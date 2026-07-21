@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="EnVigth는 반도체 및 디스플레이 산업을 위한 검사 시스템, 공장 자동화, 비전 소프트웨어, 반도체 박막 측정 및 전문 엔지니어링 서비스를 제공합니다.">
+    <title>EnVigth Co., Ltd.</title>
+
+    <style>
+        :root {
+            --red: #e52b0b;
+            --dark-red: #bb220b;
+            --black: #111111;
+            --dark: #15191e;
+            --navy: #152536;
+            --gray: #68737d;
+            --light-gray: #f4f5f7;
+            --border: #e2e5e8;
+            --white: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, "Noto Sans KR", "Malgun Gothic", sans-serif;
+            color: var(--dark);
+            background: var(--white);
+            line-height: 1.7;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+        }
+
+        section {
+            scroll-margin-top: 90px;
+        }
+
+        /* 상단 메뉴 */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            width: 100%;
+            height: 82px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 7%;
+            background: rgba(255, 255, 255, 0.97);
+            border-bottom: 1px solid var(--border);
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.04);
+        }
+
+        .logo-link {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .logo-image {
+            width: 185px;
+            height: 60px;
+            object-fit: contain;
+            object-position: left center;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        nav a {
+            position: relative;
+            padding: 29px 0;
+            text-decoration: none;
+            font-size: 25px;
+            font-weight: 700;
+            color: #252b31;
+        }
+
+        nav a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 20px;
+            width: 0;
+            height: 2px;
+            background: var(--red);
+            transition: width 0.25s ease;
+        }
+
+        nav a:hover {
+            color: var(--red);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* 첫 화면 */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 160px 8% 90px;
+            color: var(--white);
+            overflow: hidden;
+            background: linear-gradient(105deg, rgba(9, 12, 16, 0.98) 0%, rgba(20, 27, 34, 0.94) 55%, rgba(117, 23, 8, 0.88) 100%);
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: -120px;
+            right: -180px;
+            width: 700px;
+            height: 700px;
+            border: 110px solid rgba(229, 43, 11, 0.12);
+            transform: rotate(14deg);
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            right: 8%;
+            bottom: 13%;
+            width: 240px;
+            height: 9px;
+            background: var(--red);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 940px;
+        }
+
+        .hero-company {
+            margin-bottom: 100px;
+            font-size: 90px;
+            font-weight: 900;
+            letter-spacing: 5px;
+            color: #efeff4;
+        }
+
+        .hero h1 {
+            max-width: 900px;
+            margin-bottom: 28px;
+            font-size: clamp(36px, 4vw, 58px);
+            line-height: 1.8;
+            letter-spacing: -1px;
+        }
+
+        .hero-description {
+            max-width: 820px;
+            margin-bottom: 42px;
+            font-size: 24px;
+            color: #d8dde1;
+        }
+
+        .hero-keywords {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .hero-keywords span {
+            padding: 12px 20px;
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            border-radius: 30px;
+            font-size: 20px;
+            color: #f1f3f5;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 148px;
+            padding: 14px 26px;
+            border-radius: 3px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+        }
+
+        .button:hover {
+            transform: translateY(-3px);
+        }
+
+        .button-primary {
+            color: var(--white);
+            background: var(--red);
+        }
+
+        .button-primary:hover {
+            background: var(--dark-red);
+        }
+
+        .button-outline {
+            color: var(--white);
+            border: 1px solid rgba(255, 255, 255, 0.65);
+        }
+
+        .button-outline:hover {
+            color: var(--black);
+            background: var(--white);
+        }
+
+        /* 공통 구역 */
+        .section {
+            padding: 110px 8%;
+        }
+
+        .section-label {
+            display: block;
+            margin-bottom: 30px;
+            font-size: 50px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: var(--red);
+        }
+
+        .section-title {
+            margin-bottom: 18px;
+            font-size: clamp(34px, 4vw, 48px);
+            line-height: 1.25;
+            color: var(--black);
+        }
+
+        .section-description {
+            max-width: 850px;
+            margin-bottom: 48px;
+            font-size: 18px;
+            color: var(--gray);
+        }
+
+        /* 회사소개 */
+        .about {
+            background: var(--white);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 60px;
+            align-items: stretch;
+        }
+
+        .about-text {
+            font-size: 24px;
+            line-height: 1.9;
+            color: #48525b;
+        }
+
+        .about-text p + p {
+            margin-top: 22px;
+        }
+
+        .about-highlight {
+            position: relative;
+            padding: 42px;
+            color: var(--white);
+            background: var(--dark);
+            overflow: hidden;
+        }
+
+        .about-highlight::after {
+            content: "";
+            position: absolute;
+            right: -90px;
+            bottom: -110px;
+            width: 260px;
+            height: 260px;
+            border: 50px solid rgba(229, 43, 11, 0.22);
+            transform: rotate(20deg);
+        }
+
+        .about-highlight h3,
+        .about-highlight p {
+            position: relative;
+            z-index: 2;
+        }
+
+        .about-highlight h3 {
+            margin-bottom: 18px;
+            font-size: 26px;
+        }
+
+        .about-highlight p {
+            color: #d5d9dc;
+        }
+
+        /* 사업소개 */
+        .business {
+            background: var(--light-gray);
+        }
+
+        .business-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 22px;
+        }
+
+        .business-card {
+            position: relative;
+            min-height: 285px;
+            padding: 30px;
+            background: var(--white);
+            border: 1px solid var(--border);
+            transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+        }
+
+        .business-card:hover {
+            transform: translateY(-7px);
+            border-color: rgba(229, 43, 11, 0.45);
+            box-shadow: 0 16px 40px rgba(20, 30, 40, 0.1);
+        }
+
+        .business-number {
+            display: block;
+            margin-bottom: 20px;
+            font-size: 30px;
+            font-weight: 900;
+            letter-spacing: 1px;
+            color: var(--red);
+        }
+
+        .business-card h3 {
+            margin-bottom: 16px;
+            font-size: 22px;
+            line-height: 1.3;
+            color: var(--black);
+        }
+
+        .business-card p {
+            font-size: 19px;
+            color: var(--gray);
+        }
+
+        .business-card.featured {
+            color: var(--white);
+            background: var(--dark);
+            border-color: var(--dark);
+        }
+
+        .business-card.featured h3 {
+            color: var(--white);
+        }
+
+        .business-card.featured p {
+            color: #ced3d7;
+        }
+
+        /* 제품 및 솔루션 */
+        .solutions {
+            color: var(--white);
+            background: var(--navy);
+        }
+
+        .solutions .section-title {
+            color: var(--white);
+        }
+
+        .solutions .section-description {
+            color: #c6d0d9;
+        }
+
+        .solution-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .solution-item {
+            min-height: 150px;
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        .solution-item h3 {
+            margin-bottom: 15px;
+            font-size: 22px;
+        }
+
+        .solution-item p {
+            color: #c9d2d9;
+        }
+
+        .partner-card {
+            display: flex;
+            flex-direction: column;
+            min-height: 500px;
+        }
+
+        .partner-content {
+            flex: 1;
+        }
+
+        .partner-footer {
+            width: 100%;
+            display: flex;
+            justify-content: flex-end;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 24px;
+        }
+
+        .product-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 19px;
+            background: var(--red);
+            color: var(--white);
+            font-size: 14px;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 2px;
+            transition: background 0.25s ease, transform 0.25s ease;
+        }
+
+        .product-btn:hover {
+            background: var(--dark-red);
+            transform: translateY(-2px);
+        }
+
+        /* 문의 */
+        .contact {
+            background: var(--white);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 45px;
+        }
+
+        .contact-information {
+            padding: 42px;
+            color: var(--white);
+            background: var(--dark);
+        }
+
+        .contact-row + .contact-row {
+            margin-top: 28px;
+        }
+
+        .contact-row h3 {
+            margin-bottom: 10px;
+            font-size: 25px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: #ba3f26;
+        }
+
+        .contact-row p {
+            font-size: 20px;
+            line-height: 1.8;
+            color: #eef0f2;
+        }
+
+        .contact-cta {
+            display: flex;
+            flex-direction: column;
+            gap: 50px;
+            min-height: 540px;
+            padding: 42px 34px;
+            border: 1px solid #d9dee3;
+            background: var(--white);
+        }
+
+        .contact-cta-left,
+        .contact-cta-right {
+            padding: 0 10px;
+        }
+
+        .contact-cta-left h3,
+        .contact-cta-right h3 {
+            margin-bottom: 18px;
+            font-size: 24px;
+            color: var(--black);
+        }
+
+        .contact-cta-left p {
+            margin-bottom: 28px;
+            color: var(--gray);
+            font-size: 15px;
+            line-height: 1.8;
+        }
+
+        .contact-btn {
+            display: inline-block;
+            padding: 14px 22px;
+            background: var(--red);
+            color: var(--white);
+            font-size: 15px;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 2px;
+        }
+
+        .contact-btn:hover {
+            background: var(--dark-red);
+        }
+
+        .map-image {
+            width: 100%;
+            height: 480px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            border: 1px solid #d9dee3;
+            background: var(--light-gray);
+        }
+
+        .map-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .location-info strong {
+            display: block;
+            font-size: 18px;
+            color: var(--black);
+        }
+
+        /* 하단 */
+        footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+            padding: 32px 8%;
+            color: #aab1b7;
+            background: #090b0d;
+            font-size: 13px;
+        }
+
+        .footer-company {
+            color: var(--white);
+            font-weight: 700;
+        }
+
+        /* 반응형 */
+        @media (max-width: 1150px) {
+            .business-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .solution-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 850px) {
+            header {
+                height: auto;
+                min-height: 78px;
+                padding: 12px 5%;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+
+            .logo-image {
+                width: 155px;
+                height: 48px;
+            }
+
+            nav {
+                width: 100%;
+                gap: 20px;
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+
+            nav a {
+                padding: 5px 0 10px;
+                font-size: 14px;
+            }
+
+            nav a::after {
+                bottom: 3px;
+            }
+
+            .hero {
+                min-height: 850px;
+                padding: 185px 6% 90px;
+            }
+
+            .hero-company {
+                margin-bottom: 60px;
+                font-size: 54px;
+            }
+
+            .section {
+                padding: 85px 6%;
+            }
+
+            .about-grid,
+            .contact-grid,
+            .solution-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .hero {
+                min-height: 780px;
+            }
+
+            .hero-description {
+                font-size: 17px;
+            }
+
+            .business-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-highlight,
+            .contact-information,
+            .contact-cta {
+                padding: 30px;
+            }
+
+            footer {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <a class="logo-link" href="#home">
+            <img class="logo-image" src="images/logo.jpg" alt="EnVigth 로고">
+        </a>
+
+        <nav>
+            <a href="#about">회사소개</a>
+            <a href="#business">사업소개</a>
+            <a href="#solutions">제품·솔루션</a>
+            <a href="#contact">문의하기</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero" id="home">
+            <div class="hero-content">
+                <p class="hero-company">EnVigth CO.,LTD</p>
+
+                <h1>
+                    Engineering the Future of<br>
+                    Inspection &amp; Automation
+                </h1>
+
+                <p class="hero-description">
+                    EnVigth는 반도체 및 디스플레이 산업을 위한 검사 시스템, 공장 자동화, Vision S/W,
+                    반도체 박막 측정 및 전문 엔지니어링 서비스를 제공합니다.
+                    또한 Benchmark Technologies, Wise Device Inc.(WDI), Onto Innovation의
+                    파트너로서 제품 공급, 기술지원, 시스템 통합 및 고객 서비스를 제공합니다.
+                </p>
+
+                <div class="hero-keywords">
+                    <span>Inspection System</span>
+                    <span>Factory Automation</span>
+                    <span>Vision Software</span>
+                    <span>Thin Film Metrology</span>
+                </div>
+
+                <div class="hero-buttons">
+                    <a class="button button-primary" href="#business">사업분야 보기</a>
+                    <a class="button button-outline" href="#contact">문의하기</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="section about" id="about">
+            <span class="section-label">ABOUT EnVigth</span>
+
+            <h2 class="section-title">
+                기술과 경험으로 제조산업의<br>
+                새로운 가치를 만듭니다.
+            </h2>
+
+            <p class="section-description">
+                EnVigth는 반도체 및 디스플레이 제조 분야의 검사장비, 자동화 시스템,
+                영상처리 소프트웨어와 기술 서비스를 제공하는 전문기업입니다.
+            </p>
+
+            <div class="about-grid">
+                <div class="about-text">
+                    <p>
+                        EnVigth는 축적된 검사장비 기술과 현장 엔지니어링 경험을 기반으로
+                        고객의 생산성과 검사 품질을 향상시키는 솔루션을 개발하고 제공합니다.
+                    </p>
+                    <p>
+                        장비 개발, 비전 알고리즘, 시스템 통합, 현장 설치,
+                        유지보수 및 기술지원까지 프로젝트의 전 과정을 수행합니다.
+                    </p>
+                    <p>
+                        고객의 제조환경과 요구사항을 정확히 분석하여 기존 설비 개선부터
+                        신규 자동화 시스템 구축까지 최적의 기술 솔루션을 제공합니다.
+                    </p>
+                </div>
+
+                <div class="about-highlight">
+                    <h3>Our Mission</h3>
+                    <p>
+                        검사, 자동화 및 측정 기술을 통해 고객의 제조 경쟁력과 생산 가치를 높이는
+                        신뢰받는 글로벌 엔지니어링 기업이 되겠습니다.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section business" id="business">
+            <span class="section-label">OUR BUSINESS</span>
+            <h2 class="section-title">사업소개</h2>
+
+            <p class="section-description">
+                검사, 자동화, 소프트웨어, 측정 및 기술지원 분야에서 고객 맞춤형 솔루션을 제공합니다.
+            </p>
+
+            <div class="business-grid">
+                <article class="business-card">
+                    <span class="business-number">01</span>
+                    <h3>Inspection System</h3>
+                    <p>반도체 &amp; 디스플레이 제조공정의 결함을 검출하고 분석하는 검사 시스템과 알고리즘을 제공합니다.</p>
+                </article>
+
+                <article class="business-card">
+                    <span class="business-number">02</span>
+                    <h3>Factory Automation</h3>
+                    <p>조립, 이송, 검사 및 공정 효율화를 위한 고객 맞춤형 자동화 설비를 개발합니다.</p>
+                </article>
+
+                <article class="business-card">
+                    <span class="business-number">03</span>
+                    <h3>Vision Software</h3>
+                    <p>영상처리, 패턴 분석, 결함 검출 및 검사 데이터 분석 소프트웨어를 개발합니다.</p>
+                </article>
+
+                <article class="business-card">
+                    <span class="business-number">04</span>
+                    <h3>Custom Automation</h3>
+                    <p>고객의 생산공정, 공간 및 요구 사양에 맞춘 주문형 자동화 장비를 설계하고 제작합니다.</p>
+                </article>
+
+                <article class="business-card featured">
+                    <span class="business-number">05</span>
+                    <h3>Wise Device Inc. (WDI) Korea Distributor</h3>
+                    <p>WDI 제품의 국내 공급, 기술지원, 유지보수 및 고객 서비스를 제공합니다.</p>
+                </article>
+
+                <article class="business-card featured">
+                    <span class="business-number">06</span>
+                    <h3>Benchmark Technologies Korea Distributor</h3>
+                    <p>Benchmark Technologies 제품의 국내 영업, 기술지원 및 고객 서비스를 제공합니다.</p>
+                </article>
+
+                <article class="business-card featured">
+                    <span class="business-number">07</span>
+                    <h3>Onto Innovation Lithography Solutions</h3>
+                    <p>Onto Innovation 노광 장비의 영업, 기술지원 및 엔지니어링 서비스를 제공합니다.</p>
+                </article>
+
+                <article class="business-card featured">
+                    <span class="business-number">08</span>
+                    <h3>Semiconductor Thin Film Metrology</h3>
+                    <p>반도체 박막의 VTH 특성을 정밀하게 측정하는 Vigth 계측 솔루션을 제공합니다.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="section solutions" id="solutions">
+            <span class="section-label">PRODUCTS &amp; SOLUTIONS</span>
+            <h2 class="section-title">제품 및 솔루션</h2>
+
+            <p class="section-description">
+                EnVigth는 고객의 제조 공정에 적합한 검사장비, 자동화 시스템과 전문 소프트웨어를 통합 제공합니다.
+            </p>
+
+            <div class="solution-grid">
+                <article class="solution-item">
+                    <h3>Inspection Equipment</h3>
+                    <p>디스플레이 및 반도체 공정에서 사용되는 검사장비와 결함 분석 시스템</p>
+                </article>
+
+                <article class="solution-item">
+                    <h3>Automation Equipment</h3>
+                    <p>생산성과 품질 안정화를 위한 조립, 이송 및 공정 자동화 장비</p>
+                </article>
+
+                <article class="solution-item">
+                    <h3>Software &amp; Algorithm</h3>
+                    <p>비전 검사 알고리즘, 설비 제어 프로그램 및 통합 검사 소프트웨어</p>
+                </article>
+
+                <article class="solution-item partner-card">
+                    <div class="partner-content">
+                        <h3>Wise Device Inc. (WDI) Korea Distributor</h3>
+                        <p>
+                            Providing Industry-Leading OEM Microscopy &amp; Precision Autofocus Solutions<br><br>
+                            Laser Autofocus Sensors<br>
+                            Precision Focus Automation (PFA)<br>
+                            OEM Microscopy Systems<br>
+                            Motorized Microscope Modules<br>
+                            Optical Imaging Systems<br>
+                            SWIR Imaging<br>
+                            Infrared Confocal Microscopy<br>
+                            Vision Inspection Modules
+                        </p>
+                    </div>
+
+                    <div class="partner-footer">
+                        <a class="product-btn" href="https://wdidevice.com/products/" target="_blank" rel="noopener noreferrer">제품 보기 →</a>
+                    </div>
+                </article>
+
+                <article class="solution-item partner-card">
+                    <div class="partner-content">
+                        <h3>Onto Innovation Solutions</h3>
+                        <p>
+                            Inspection &amp; Lithography Solutions<br><br>
+                            Inspection Systems<br>
+                            Panel Lithography Systems<br>
+                            Advanced Packaging Lithography<br>
+                            Lithography System Integration<br>
+                            Equipment Installation<br>
+                            Preventive Maintenance<br>
+                            Repair &amp; Refurbishment<br>
+                            Spare Parts Support<br>
+                            Technical Engineering Services
+                        </p>
+                    </div>
+
+                    <div class="partner-footer">
+                        <a class="product-btn" href="https://ontoinnovation.com/product-categories/inspection/" target="_blank" rel="noopener noreferrer">Inspection →</a>
+                        <a class="product-btn" href="https://ontoinnovation.com/product-categories/lithography/" target="_blank" rel="noopener noreferrer">Lithography →</a>
+                    </div>
+                </article>
+
+                <article class="solution-item partner-card">
+                    <div class="partner-content">
+                        <h3>Benchmark Technologies Korea Distributor</h3>
+                        <p>
+                            Test Reticles<br>
+                            Photomask<br>
+                            Calibration Wafer<br>
+                            Grayscale Mask<br>
+                            Grating &amp; Phase Mask<br>
+                            Lithography Software<br>
+                            CAD Design Service<br>
+                            Custom Micro/Nano Patterning
+                        </p>
+                    </div>
+
+                    <div class="partner-footer">
+                        <a class="product-btn" href="https://benchmarktech.com/products/" target="_blank" rel="noopener noreferrer">제품 보기 →</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="section contact" id="contact">
+            <span class="section-label">CONTACT US</span>
+            <h2 class="section-title">문의하기</h2>
+
+            <p class="section-description">
+                제품, 기술지원, 장비 개조 및 프로젝트 관련 문의는 아래 연락처로 연락해 주시기 바랍니다.
+            </p>
+
+            <div class="contact-grid">
+                <div class="contact-information">
+                    <div class="contact-row">
+                        <h3>COMPANY</h3>
+                        <p>EnVigth Co., Ltd.<br>주식회사 엔빅스</p>
+                    </div>
+
+                    <div class="contact-row">
+                        <h3>ADDRESS</h3>
+                        <p>경기도 화성시 동탄산단8길 15-15</p>
+                    </div>
+
+                    <div class="contact-row">
+                        <h3>PHONE</h3>
+                        <p>031-378-5271 / 010-4998-2393</p>
+                    </div>
+
+                    <div class="contact-row">
+                        <h3>FAX</h3>
+                        <p>031-378-5260</p>
+                    </div>
+
+                    <div class="contact-row">
+                        <h3>EMAIL</h3>
+                        <p>hsales@envigth.co.kr</p>
+                    </div>
+                </div>
+
+                <div class="contact-cta">
+                    <div class="contact-cta-left">
+                        <h3>EnVigth와 함께 새로운 가능성을 시작하세요.</h3>
+                        <p>
+                            고객의 공정과 기술적 요구사항을 분석하여 최적의 검사,
+                            자동화 및 계측 솔루션을 제안해 드립니다.
+                        </p>
+                        <a href="mailto:hsales@envigth.co.kr" class="contact-btn">Email 문의하기</a>
+                    </div>
+
+                    <div class="contact-cta-right">
+                        <h3>찾아오시는 길</h3>
+                        <div class="map-image">
+                            <img src="images/location-map.jpg" alt="EnVigth 찾아오시는 길">
+                        </div>
+                        <div class="location-info">
+                            <strong>경기도 화성시 동탄산단8길 15-15</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <span class="footer-company">EnVigth Co., Ltd.</span>
+        <span>경기도 화성시 동탄산단8길 15-15 | TEL 031-378-5271 | FAX 031-378-5260</span>
+        <span>© EnVigth Co., Ltd. All rights reserved.</span>
+    </footer>
+</body>
+</html>
